@@ -6,9 +6,11 @@ test:
 test-all:	test-quiz test-code
 
 test-quiz:
-	@[ "$(BRANCH)" = "master" ] \
-	    || { [ -f "$(BRANCH)/answers.json" ] && (cd $(BRANCH) && make -s test) }
+	@[ "$(BRANCH)" = "master" -o -z "$(BRANCH)" ] \
+	    || [ ! -f "$(BRANCH)/answers.json" ] \
+	    || .scripts/check.py \
 
 test-code:
-	@[ "$(BRANCH)" = "master" ] \
-	    || { [ -f "$(BRANCH)/Makefile" ] && (cd $(BRANCH) && make -s test) }
+	@[ "$(BRANCH)" = "master" -o -z "$(BRANCH)" ] \
+	    || [ ! -f "$(BRANCH)/Makefile" ] \
+	    || (cd $(BRANCH) && make -s test)

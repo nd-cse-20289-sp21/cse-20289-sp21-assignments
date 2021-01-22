@@ -24,8 +24,8 @@ def add_assignment(assignment, path=None):
         ASSIGNMENTS[assignment] = path
 
 def print_results(results):
-    for key, value in sorted(results):
-        if key == 'value':
+    for key, value in sorted(results.items()):
+        if not key.lower().startswith('q'):
             continue
 
         try:
@@ -35,6 +35,9 @@ def print_results(results):
                 print('{:>8}\n{}'.format(key.title(), value))
             else:
                 print('{:>8} {}'.format(key.title(), value))
+
+    print('{:>8} {:.2f} / {:.2f}'.format('Score', results.get('score', 0), results.get('value', 0)))
+    print('{:>8} {}'.format('Status', 'Success' if int(results.get('status', 1)) == 0 else 'Failure'))
 
 # Submit Functions
 
@@ -54,13 +57,13 @@ def submit_quiz(assignment, path):
         print('No quiz found (answers.{json,yaml})')
         return 1
 
-    print('Submitting {} quiz ...'.format(assignment))
+    print('Checking {} quiz ...'.format(assignment))
     response = requests.post(DREDD_QUIZ_URL + assignment, data=json.dumps(answers))
-    print_results(response.json().items())
+    print_results(response.json())
     print()
 
     quiz_max = response.json().get('value', DREDD_READING_QUIZ_MAX)
-    return 0 if response.json().get('score', 0) >= quiz_max else 1
+    return int(response.json().get('status', 1))
 
 # Main Execution
 
@@ -89,7 +92,6 @@ if not ASSIGNMENTS:
 exit_code = 0
 
 for assignment, path in sorted(ASSIGNMENTS.items()):
-    print('Submitting {} assignment ...'.format(assignment))
     if 'reading' in assignment or 'homework' in assignment:
         exit_code += submit_quiz(assignment, path)
 
