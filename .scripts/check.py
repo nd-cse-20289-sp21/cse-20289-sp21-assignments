@@ -20,7 +20,7 @@ def add_assignment(assignment, path=None):
     if path is None:
         path = assignment
 
-    if assignment.startswith('reading') or assignment.startswith('project'):
+    if assignment.startswith('reading') or assignment.startswith('homework'):
         ASSIGNMENTS[assignment] = path
 
 def print_results(results):
