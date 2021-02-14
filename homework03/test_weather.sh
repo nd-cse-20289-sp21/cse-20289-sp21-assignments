@@ -104,38 +104,6 @@ else
     echo "Success"
 fi
 
-printf "   %-40s ... " 92867
-diff -u <(./$SCRIPT 92867) <(weather 92867) > $WORKSPACE/test
-if [ $? -ne 0 ]; then
-    error "Failure"
-else
-    echo "Success"
-fi
-
-printf "   %-40s ... " "92867 Celsius"
-diff -u <(./$SCRIPT -c 92867) <(weather 92867 celsius) > $WORKSPACE/test
-if [ $? -ne 0 ]; then
-    error "Failure"
-else
-    echo "Success"
-fi
-
-printf "   %-40s ... " "92867 Forecast"
-diff -u <(./$SCRIPT -f 92867) <(weather 92867 forecast) > $WORKSPACE/test
-if [ $? -ne 0 ]; then
-    error "Failure"
-else
-    echo "Success"
-fi
-
-printf "   %-40s ... " "92867 Celsius Forecast"
-diff -u <(./$SCRIPT -c -f 92867) <(weather 92867 "celsius forecast") > $WORKSPACE/test
-if [ $? -ne 0 ]; then
-    error "Failure"
-else
-    echo "Success"
-fi
-
 printf "   %-40s ... " 54701
 diff -u <(./$SCRIPT 54701) <(weather 54701) > $WORKSPACE/test
 if [ $? -ne 0 ]; then
@@ -162,6 +130,38 @@ fi
 
 printf "   %-40s ... " "54701 Celsius Forecast"
 diff -u <(./$SCRIPT -c -f 54701) <(weather 54701 "celsius forecast") > $WORKSPACE/test
+if [ $? -ne 0 ]; then
+    error "Failure"
+else
+    echo "Success"
+fi
+
+printf "   %-40s ... " 92867
+diff -u <(./$SCRIPT 92867) <(weather 92867) > $WORKSPACE/test
+if [ $? -ne 0 ]; then
+    error "Failure"
+else
+    echo "Success"
+fi
+
+printf "   %-40s ... " "92867 Celsius"
+diff -u <(./$SCRIPT -c 92867) <(weather 92867 celsius) > $WORKSPACE/test
+if [ $? -ne 0 ]; then
+    error "Failure"
+else
+    echo "Success"
+fi
+
+printf "   %-40s ... " "92867 Forecast"
+diff -u <(./$SCRIPT -f 92867) <(weather 92867 forecast) > $WORKSPACE/test
+if [ $? -ne 0 ]; then
+    error "Failure"
+else
+    echo "Success"
+fi
+
+printf "   %-40s ... " "92867 Celsius Forecast"
+diff -u <(./$SCRIPT -c -f 92867) <(weather 92867 "celsius forecast") > $WORKSPACE/test
 if [ $? -ne 0 ]; then
     error "Failure"
 else
