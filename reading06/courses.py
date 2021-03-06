@@ -18,7 +18,7 @@ response = None
 data = None
 
 # TODO: Compile regular expression to match CSE courses (ie. CSE XXXXX)
-regex = re.compile(r'')
+regex = None
 
 # TODO: Search through data using compiled regular expression and count up all
 # the courses per class year
@@ -27,5 +27,5 @@ for course in re.findall(None, None):
 
 # Sort items in counts dictionary by value in reverse order and display counts
 # and class year
-for year, count in sorted(counts.items(), key=lambda p: p[1], reverse=True):
+for year, count in sorted(counts.items(), key=lambda p: p[1]):
     print(f'{count:>7} {year}')
