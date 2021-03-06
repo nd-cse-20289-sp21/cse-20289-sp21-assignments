@@ -4,8 +4,8 @@ test:
 test-all:	test-scripts test-reddit test-demographics
 
 test-scripts:
-	curl -sLO https://gitlab.com/nd-cse-20289-sp20/cse-20289-sp20-assignments/raw/master/homework05/test_reddit.sh
-	curl -sLO https://gitlab.com/nd-cse-20289-sp20/cse-20289-sp20-assignments/raw/master/homework05/test_demographics.sh
+	curl -sLO https://raw.githubusercontent.com/nd-cse-20289-sp21/cse-20289-sp21-assignments/master/homework05/test_demographics.sh
+	curl -sLO https://raw.githubusercontent.com/nd-cse-20289-sp21/cse-20289-sp21-assignments/master/homework05/test_reddit.sh
 	chmod +x test_*.sh
 
 test-reddit:
