@@ -4,7 +4,7 @@ test:
 test-all:	test-scripts test-evens_fp test-evens_lc test-evens_gr
 
 test-scripts:
-	curl -sLO 
+	curl -sLO https://raw.githubusercontent.com/nd-cse-20289-sp21/cse-20289-sp21-assignments/master/reading07/test_evens.sh
 	chmod +x test_evens.sh
 
 test-evens_fp:
