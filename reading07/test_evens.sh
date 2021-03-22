@@ -68,7 +68,7 @@ case $SCRIPT in
     ;;
     *evens_gr*)
     echo "Missing yield" > $WORKSPACE/test
-    grep -Eq 'yield' $SCRIPT
+    grep -v 'TODO' $SCRIPT | grep -Ev '^\s*#' | grep -Eq 'yield'
     ;;
 esac
 if [ $? -ne 0 ] || [ ! -x "$SCRIPT" ]; then
