@@ -12,7 +12,7 @@ test:
 test-all:	test-sort test-grep
 
 test-sort:	sort
-	curl -sLO https://github.com/nd-cse-20289-sp21/cse-20289-sp21-assignments/blob/master/reading09/test_sort.sh
+	curl -sLO https://raw.githubusercontent.com/nd-cse-20289-sp21/cse-20289-sp21-assignments/master/reading09/test_sort.sh
 	chmod +x test_sort.sh
 	./test_sort.sh
 
