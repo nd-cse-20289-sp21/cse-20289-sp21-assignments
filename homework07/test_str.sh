@@ -230,4 +230,4 @@ else
 fi
 
 TESTS=$(($(grep -c Success $0) - 1))
-echo "   Score $(echo "scale=2; ($TESTS - $FAILURES) / $TESTS.0 * 4.0" | bc)"
+echo "   Score $(echo "scale=2; ($TESTS - $FAILURES) / $TESTS.0 * 3.0" | bc)"

@@ -6,7 +6,6 @@ import unittest
 # Str Utilities - Library
 
 libstr = ctypes.CDLL('./libstr.so')
-libstr.str_to_int.restype = ctypes.c_int
 
 # Str Utilities - Test Case
 
@@ -53,7 +52,7 @@ class StrTestCase(unittest.TestCase):
             target = source.value.strip()
             libstr.str_strip(source)
             self.assertTrue(source.value == target)
-            StrTestCase.Points += 1.00 / len(words)
+            StrTestCase.Points += 1.0 / len(words)
 
     def test_05_str_reverse(self):
         words = [b'', b' ', b' A', b'A ', b' A ', b' A B ']
@@ -61,7 +60,7 @@ class StrTestCase(unittest.TestCase):
             target = source.value[::-1]
             libstr.str_reverse(source)
             self.assertTrue(source.value == target)
-            StrTestCase.Points += 2.0 / len(words)
+            StrTestCase.Points += 1.5 / len(words)
 
     def test_06_str_translate(self):
         cases = [
@@ -76,31 +75,7 @@ class StrTestCase(unittest.TestCase):
             a = ctypes.create_string_buffer(a)
             libstr.str_translate(a, b, c)
             self.assertTrue(a.value == d)
-            StrTestCase.Points += 2.0 / len(cases)
-
-    def test_07_str_to_int(self):
-        cases = (
-            (b'0', 2),
-            (b'1', 2),
-            (b'10', 2),
-            (b'11', 2),
-            (b'0', 8),
-            (b'44', 8),
-            (b'644', 8),
-            (b'0', 10),
-            (b'9', 10),
-            (b'10', 10),
-            (b'19', 10),
-            (b'0', 16),
-            (b'A', 16),
-            (b'AF', 16),
-            (b'a', 16),
-            (b'aF', 16),
-        )
-
-        for s, b in cases:
-            self.assertTrue(libstr.str_to_int(s, b) == int(s, b))
-            StrTestCase.Points += 2.0 / len(cases)
+            StrTestCase.Points += 1.5 / len(cases)
 
     @classmethod
     def setupClass(cls):
