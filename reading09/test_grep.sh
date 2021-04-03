@@ -70,7 +70,7 @@ fi
 printf " %-40s ... " "grep asdf /etc/passwd"
 valgrind --leak-check=full ./grep asdf < /etc/passwd &> $WORKSPACE/test
 if [ $? -eq 0 ]; then
-    error "Failure"
+    error "Failure (Wrong exit code)"
 else
     echo "Success"
 fi
