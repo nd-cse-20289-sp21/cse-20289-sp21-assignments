@@ -90,16 +90,16 @@ else
 fi
 printf " %-60s ... " "$PROGRAM (fakehost 9999, valgrind)" && test_valgrind
 
-printf " %-60s ... " "$PROGRAM (localhost 10, client)"
+printf " %-60s ... " "$PROGRAM (localhost 0, client)"
 MESSAGE=$(md5sum <<<$(whoami) | awk '{print $1}')
-PATTERN="Connection refused"
-valgrind --leak-check=full ./$PROGRAM localhost 10 <<<$MESSAGE &> $WORKSPACE/test
-if [ $? -eq 0 ] || ! grep -q "$PATTERN" $WORKSPACE/test; then
+PATTERN="(Connection refused|Cannot assign requested address)"
+valgrind --leak-check=full ./$PROGRAM localhost 0 <<<$MESSAGE &> $WORKSPACE/test
+if [ $? -eq 0 ] || ! grep -Eq "$PATTERN" $WORKSPACE/test; then
     error "Failure"
 else
     echo "Success"
 fi
-printf " %-60s ... " "$PROGRAM (localhost 10, valgrind)" && test_valgrind
+printf " %-60s ... " "$PROGRAM (localhost 0, valgrind)" && test_valgrind
 
 nc_server
 printf " %-60s ... " "$PROGRAM (localhost $PORT, client)"
