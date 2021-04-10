@@ -11,5 +11,5 @@ RUN         apt-get install -y python3-tornado python3-requests python3-yaml pyt
 # Shell utilities
 RUN	    apt-get install -y curl bc netcat iproute2 zip unzip gawk
 
-# Language Support: C, C++, Make, valgrind, cppcheck
-RUN         apt-get install -y gcc g++ make valgrind cppcheck
+# Language Support: C, C++, Make, valgrind, cppcheck, strace
+RUN         apt-get install -y gcc g++ make valgrind cppcheck strace
