@@ -6,9 +6,6 @@ all:            $(TARGETS)
 
 # TODO: Add rule for doit
 
-doit:		doit.c
-	$(CC) $(CFLAGS) -o $@ $^
-
 test:
 	        @$(MAKE) -sk test-all
 
